@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app # Mount the project directory to allow file change detection
+      - /app/tmp # Temp directory to avoid caching issues
+    environment:
+      - AIR_WATCH_DELAY=1000ms # Adjust delay to control how often Air checks for changes
+      - AIR_WATCH_ROOT=/app # Root folder for watching
+      - GO_ENV=development # Set the Go environment variable if needed
+    ports:
+      - "8080:8080" # Expose the app on port 8080
+    command: ["air"]
