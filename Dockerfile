@@ -4,8 +4,8 @@ FROM golang:1.23-alpine
 # Install dependencies
 RUN apk add --no-cache git
 
-# Install Air for hot-reloading
-RUN go install github.com/cosmtrek/air@latest
+# Install Air for hot-reloading, using the correct path
+RUN go install github.com/air-verse/air@v1.61.1
 
 # Set the working directory inside the container
 WORKDIR /app
